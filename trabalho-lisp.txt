@@ -1,6 +1,3 @@
-;;	Larissa Magalhães Pereira
-;;	Nº USP: 13747904
-
 (setf lis '(lobo cabra repolho)) ;;  lis = lista com as compras 
 
 (defun main (lis)
