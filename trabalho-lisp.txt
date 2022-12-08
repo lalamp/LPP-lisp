@@ -1,0 +1,179 @@
+;;	Larissa Magalhães Pereira
+;;	Nº USP: 13747904
+
+(setf lis '(lobo cabra repolho)) ;;  lis = lista com as compras 
+
+(defun main (lis)
+	(setf lisM1 '(lobo cabra repolho))	;; lisM1 = lista com as compras que estão na margem 1 - inicialmente com todas as compras
+	(setf lisM2 '()) 				;; lisM2 = lista com as compras que estão na margem 2 - inicialmente vazia
+
+	(moves1 lis)				;; chama a função moves1 com a lista 'lis'
+	(print 'desafio_concluido)
+)
+
+;; função 'moves1': recebe a lista que possui as compras que estão na margem 1 e faz as transições da margem 1 para a margem 2
+(defun moves1 (lisA)
+	(cond
+		;; condição 1: se a lisM1 for vazia, volta para a main
+		((equal lisM1 nil))
+		
+		;; condição 2: se o lobo e a cabra fizerem parte da lista, move-se a cabra para a outra margem
+		(	
+			(and (member 'lobo lisA) (member 'cabra lisA)) 	;; analisa se o lobo e a cabra fazem parte da lista
+
+			(progn
+				(print 'o_fazendeiro_vai_para_a_margem2_com_a_cabra)	 
+
+				(setf lisM1 (remove 'cabra lisM1)) 	;; retira a cabra da lista da margem 1 (lisM1)
+				(push 'cabra lisM2) 			;; coloca a cabra na lista da margem 2 (lisM2)
+			
+				;; mostra as compras que estão em cada margem
+				(print 'margem_1)
+				(print lisM1)
+				(print 'margem_2)
+				(print lisM2)
+
+				(moves2 lisM2)	;; chama a função moves2 com a lisM2
+              	)
+		)
+
+		;; condição 3: se o lobo e o repolho fizerem parte da lista, move-se o lobo para a outra margem
+		(	
+			(and (member 'lobo lisA) (member 'repolho lisA))  ;; analisa se o lobo e o repolho fazem parte da lista
+
+		  	(progn
+		  		(print 'o_fazendeiro_vai_para_a_margem2_com_o_lobo)	
+
+				(setf lisM1 (remove 'lobo lisM1))	;; retira o lobo da lista da margem 1 (lisM1)
+				(push 'lobo lisM2)			;; coloca o lobo na lista da margem 2 (lisM2)
+
+				;; mostra as compras que estão em cada margem
+				(print 'margem_1)
+				(print lisM1)
+				(print 'margem_2)
+				(print lisM2)
+
+				(moves2 lisM2)	;; chama a função moves2 com a lisM2
+              	)
+		)
+		
+		;; condição 4: se a cabra e o repolho fizerem parte da lista, move-se o repolho para a outra margem
+		( 
+			(and (member 'cabra lisA) (member 'repolho lisA))
+
+		  	(progn	
+		  		(print 'o_fazendeiro_vai_para_a_margem2_com_o_repolho)	
+
+				(setf lisM1 (remove 'repolho lisM1)) 	;; retira o repolho da lista da margem 1 (lisM1)
+				(push 'repolho lisM2)				;; coloca o repolho na lista da margem 2 (lisM2)
+				
+				;; mostra as compras que estão em cada margem
+				(print 'margem_1)
+				(print lisM1)
+				(print 'margem_2)
+				(print lisM2)
+
+				(moves2 lisM2)	;; chama a função moves2 com a lisM2
+              	)
+		)
+
+		;; condição 5: se só* cabra fizer parte da lista, move-se a cabra para a outra margem
+		;;*só, pois as outras condições da cabra com outra compra (lobo ou repolho) já foram analisadas
+		( 	
+			(and (member 'cabra lisA))
+
+		  	(progn	
+		  		(print 'o_fazendeiro_vai_para_a_margem2_com_a_cabra)	
+
+				(setf lisM1 (remove 'cabra lisM1))	;; retira a cabra da lista da margem 1 (lisM1)
+				(push 'cabra lisM2) 			;; coloca a cabra na lista da margem 2 (lisM2)
+
+				;; mostra as compras que estão em cada margem
+				(print 'margem_1)
+				(print lisM1)
+				(print 'margem_2)
+				(print lisM2)
+
+				(moves2 lisM2)	;; chama a função moves2 com a lisM2
+              	)
+		)
+
+		;; condição default: não há alterações nas listas, pois o fazendeiro vai sozinho para a outra margem
+		(t 	
+		   	(progn
+				(print 'o_fazendeiro_vai_para_a_margem2_com_nada)
+ 	
+				;; mostra as compras que estão em cada margem
+				(print 'margem_1)
+				(print lisM1)
+				(print 'margem_2)
+				(print lisM2)
+
+				(moves2 lisM2)	;; chama a função moves2 com a lisM2
+		   	)
+		)
+	)  	
+)
+
+;; função 'moves2': recebe a lista que possui as compras que estão na margem 2 e faz as transições da margem 2 para a margem 1
+(defun moves2 (lisA)
+	(cond
+		;; condição 1: se a lisM1 for vazia, volta para a main
+		((equal lisM1 nil))
+
+		;; condição 2: se o lobo e a cabra fizerem parte da lista, move-se a cabra para a outra margem
+		(	(and (member 'lobo lisA) (member 'cabra lisA)) 
+
+		  	(progn	
+				(print 'o_fazendeiro_volta_para_a_margem1_com_a_cabra) 
+
+				(setf lisM2 (remove 'cabra lisM2))	;; retira a cabra da lista da margem 2 (lisM2)
+				(push 'cabra lisM1)			;; coloca a cabra na lista da margem 1 (lisM1)
+			
+				;; mostra as compras que estão em cada margem
+				(print 'margem_1)
+				(print lisM1)
+				(print 'margem_2)
+				(print lisM2)
+
+				(moves1 lisM1)	;; chama a função moves1 com a lisM1
+		  	)
+		)
+		
+		;; condição 3: se a cabra e o repolho fizerem parte da lista, move-se o repolho para a outra margem
+		( 
+			(and (member 'cabra lisA) (member 'repolho lisA))
+
+		  	(progn	
+		  		(print 'o_fazendeiro_volta_para_a_margem1_com_o_repolho)	
+
+				(setf lisM2 (remove 'repolho lisM2)) 	;; retira o repolho da lista da margem 2 (lisM2)
+				(push 'repolho lisM1)				;; coloca o repolho na lista da margem 1 (lisM1)
+				
+				;; mostra as compras que estão em cada margem
+				(print 'margem_1)
+				(print lisM1)
+				(print 'margem_2)
+				(print lisM2)
+
+				(moves1 lisM1)	;; chama a função moves1 com a lisM1
+              	)
+		)
+		
+		;; condição default: não há alterações nas listas, pois o fazendeiro vai sozinho para a outra margem
+		(t 
+		 	(progn	
+				(print 'o_fazendeiro_volta_para_a_margem1_com_nada)
+
+				;; mostra as compras que estão em cada margem
+				(print 'margem_1)
+				(print lisM1)
+				(print 'margem_2)
+				(print lisM2)
+
+				(moves1 lisM1)	;; chama a função moves1 com a lisM1
+		 	)
+		)
+	)  	
+)
+	
