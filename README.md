@@ -1,4 +1,4 @@
-# lisp
+# trabalho lisp
 Trabalho de LISP da disciplina Linguagens e Paradigmas de Programação
 
 Certa vez, um fazendeiro foi a um mercado e comprou um lobo, uma cabra e um
