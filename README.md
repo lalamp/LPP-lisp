@@ -10,7 +10,6 @@ cabra com o lobo e nem mesmo o repolho com a cabra, pois o lobo comeria a cabra
 ou então a cabra comeria o repolho. O desafio do fazendeiro consiste em levar a si
 mesmo e suas compras para a outra margem do rio, deixando cada compra intacta.
 
-
 Defina um programa LISP para encontrar uma solução para este problema. Defina a
 função main que encontra e exibe a solução encontrada. Documente
 adequadamente o significado de toda estrutura de dados que utilizar bem como as
