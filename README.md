@@ -1,5 +1,5 @@
-# trabalho lisp
-Trabalho de LISP da disciplina Linguagens e Paradigmas de Programação
+# Linguagens e Paradigmas de Programação
+Linguagem: LISP
 
 Certa vez, um fazendeiro foi a um mercado e comprou um lobo, uma cabra e um
 repolho. A caminho de casa, o fazendeiro chegou à margem de um rio e alugou um
